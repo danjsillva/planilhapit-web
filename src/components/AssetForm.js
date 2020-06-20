@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import { saldoState, acoesState } from '../store/atoms'
 
-import { Button } from '../styles/form'
+import { Input, Button } from '../styles/form'
 
 const AssetForm = () => {
     const [acao, setAcao] = useState({ nome: 'BIDI3', nota: 3, quant: 2, preco: 0 })
@@ -23,14 +23,14 @@ const AssetForm = () => {
     return (
         <div>
             <form>
-                <input value={saldo} onChange={e => setSaldo(e.target.value)} />
-                <input value={acoes.reduce((total, acao) => total + (acao.preco * acao.quant), 0)} readOnly />
+                <Input value={saldo} onChange={e => setSaldo(e.target.value)} />
+                <Input value={acoes.reduce((total, acao) => total + (acao.preco * acao.quant), 0)} readOnly />
             </form>
 
             <form onSubmit={handleSubmitForm}>
-                <input value={acao.nome} onChange={e => setAcao({ ...acao, nome: e.target.value})} />
-                <input value={acao.nota} onChange={e => setAcao({ ...acao, nota: e.target.value})} />
-                <input value={acao.quant} onChange={e => setAcao({ ...acao, quant: e.target.value})} />
+                <Input value={acao.nome} onChange={e => setAcao({ ...acao, nome: e.target.value})} />
+                <Input value={acao.nota} onChange={e => setAcao({ ...acao, nota: e.target.value})} />
+                <Input value={acao.quant} onChange={e => setAcao({ ...acao, quant: e.target.value})} />
                 <Button type="submit">Adicionar</Button>
             </form>
         </div>

@@ -3,9 +3,6 @@ import { useRecoilState } from "recoil";
 
 import { saldoState, acoesState } from '../store/atoms'
 
-import { Button } from '../styles/form'
-import { Row } from '../styles/table'
-
 const AssetsTable = () => {
     const [saldo,] = useRecoilState(saldoState);
     const [acoes, setAcoes] = useRecoilState(acoesState);
@@ -34,61 +31,33 @@ const AssetsTable = () => {
     }
 
     return (
-        <>
+        <div className="container">
+            <div className="card card-body">
+                <div className="row">
+                    <div className="col-5 border">Ativo</div>
+                    <div className="col-3 border">Atual</div>
+                    <div className="col-3 border">Ideal</div>
+                    <div className="col-1 border"></div>
+                </div>
+            </div>
+
             {acoes.map(acao => (
-                <Row key={acao.nome}>
-                    <div>{handleGetAcao(acao.nome).nome}</div>
-                    <div>{handleGetAcao(acao.nome).nota}</div>
-                    <div>{handleGetAcao(acao.nome).preco}</div>
-                    <div>{handleGetAcao(acao.nome).quantAtual}</div>
-                    <div>{handleGetAcao(acao.nome).totalAtual}</div>
-                    <div>{handleGetAcao(acao.nome).percentAtual}</div>
-                    <div>{handleGetAcao(acao.nome).quantIdeal}</div>
-                    <div>{handleGetAcao(acao.nome).totalIdeal}</div>
-                    <div>{handleGetAcao(acao.nome).percentIdeal}</div>
-                    <div>{handleGetAcao(acao.nome).status}</div>
-                    <div>
-                        <Button onClick={e => handleClickRemover(acao.nome)}>Remover</Button>
+                <div key={acao.nome} className="card card-body">
+                    <div className="row">
+                        <div className="col-2">{handleGetAcao(acao.nome).nome}</div>
+                        <div className="col-1">{handleGetAcao(acao.nome).nota}</div>
+                        <div className="col-2">{handleGetAcao(acao.nome).preco}</div>
+                        <div className="col">{handleGetAcao(acao.nome).quantAtual}</div>
+                        <div className="col">{handleGetAcao(acao.nome).totalAtual}</div>
+                        <div className="col">{handleGetAcao(acao.nome).percentAtual}%</div>
+                        <div className="col">{handleGetAcao(acao.nome).quantIdeal}</div>
+                        <div className="col">{handleGetAcao(acao.nome).totalIdeal}</div>
+                        <div className="col">{handleGetAcao(acao.nome).percentIdeal}%</div>
+                        <div className="col">{handleGetAcao(acao.nome).status}</div>
                     </div>
-                </Row>
+                </div>
             ))}
-        </>
-        // <table style={{ width: '100%' }}>
-        //     <thead>
-        //         <tr>
-        //             <td>Ativo</td>
-        //             <td>Nota</td>
-        //             <td>Preço</td>
-        //             <td>Quant</td>
-        //             <td>Total</td>
-        //             <td>Porcentagem</td>
-        //             <td>Quant</td>
-        //             <td>Total</td>
-        //             <td>Porcentagem</td>
-        //             <td>Comprar</td>
-        //             <td>Ação</td>
-        //         </tr>
-        //     </thead>
-        //     <tbody>
-        //         {acoes.map(acao => (
-        //             <tr key={acao.nome}>
-        //                 <td>{handleGetAcao(acao.nome).nome}</td>
-        //                 <td>{handleGetAcao(acao.nome).nota}</td>
-        //                 <td>{handleGetAcao(acao.nome).preco}</td>
-        //                 <td>{handleGetAcao(acao.nome).quantAtual}</td>
-        //                 <td>{handleGetAcao(acao.nome).totalAtual}</td>
-        //                 <td>{handleGetAcao(acao.nome).percentAtual}</td>
-        //                 <td>{handleGetAcao(acao.nome).quantIdeal}</td>
-        //                 <td>{handleGetAcao(acao.nome).totalIdeal}</td>
-        //                 <td>{handleGetAcao(acao.nome).percentIdeal}</td>
-        //                 <td>{handleGetAcao(acao.nome).status}</td>
-        //                 <td>
-        //                     <button onClick={e => handleClickRemover(acao.nome)}>Remover</button>
-        //                 </td>
-        //             </tr>
-        //         ))}
-        //     </tbody>
-        // </table>
+        </div>
     )
 }
 

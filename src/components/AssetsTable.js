@@ -10,13 +10,13 @@ const AssetsTable = () => {
     const [saldo,] = useRecoilState(saldoState);
     const [acoes, setAcoes] = useRecoilState(acoesState);
 
-    const handleGetAcao = (nome) => {
-        const acao = acoes.find(acao => acao.nome === nome)
+    const handleGetAcao = (name) => {
+        const acao = acoes.find(acao => acao.name === name)
         const totalPreco = acoes.reduce((total, acao) => total + (acao.quant * acao.preco), 0)
         const totalNota = acoes.reduce((total, acao) => total + (acao.nota), 0)
     
         return ({
-            nome: acao.nome,
+            name: acao.name,
             nota: acao.nota,
             preco: (acao.preco).toFixed(2),
             quantAtual: Math.floor(acao.quant),
@@ -29,8 +29,8 @@ const AssetsTable = () => {
         })
     }
 
-    const handleClickRemover = (nome) => {
-        setAcoes(acoes.filter(acao => acao.nome !== nome))
+    const handleClickRemover = (name) => {
+        setAcoes(acoes.filter(acao => acao.name !== name))
     }
 
     return (
@@ -47,18 +47,18 @@ const AssetsTable = () => {
             </div>
 
             {acoes.map(acao => (
-                <div key={acao.nome} className="card card-body pointer mt-1">
+                <div key={acao.name} className="card card-body pointer mt-1">
                     <div className="row">
-                        <div className="col-2">{handleGetAcao(acao.nome).nome}</div>
-                        <div className="col-1">{handleGetAcao(acao.nome).nota}</div>
-                        <div className="col-2 border-right">{handleGetAcao(acao.nome).preco}</div>
-                        <div className="col-1">{handleGetAcao(acao.nome).quantAtual}</div>
-                        <div className="col-1">{handleGetAcao(acao.nome).totalAtual}</div>
-                        <div className="col-1 border-right">{handleGetAcao(acao.nome).percentAtual}%</div>
-                        <div className="col-1">{handleGetAcao(acao.nome).quantIdeal}</div>
-                        <div className="col-1">{handleGetAcao(acao.nome).totalIdeal}</div>
-                        <div className="col-1 border-right">{handleGetAcao(acao.nome).percentIdeal}%</div>
-                        <div className="col-1">{handleGetAcao(acao.nome).status}</div>
+                        <div className="col-2">{handleGetAcao(acao.name).name}</div>
+                        <div className="col-1">{handleGetAcao(acao.name).nota}</div>
+                        <div className="col-2 border-right">{handleGetAcao(acao.name).preco}</div>
+                        <div className="col-1">{handleGetAcao(acao.name).quantAtual}</div>
+                        <div className="col-1">{handleGetAcao(acao.name).totalAtual}</div>
+                        <div className="col-1 border-right">{handleGetAcao(acao.name).percentAtual}%</div>
+                        <div className="col-1">{handleGetAcao(acao.name).quantIdeal}</div>
+                        <div className="col-1">{handleGetAcao(acao.name).totalIdeal}</div>
+                        <div className="col-1 border-right">{handleGetAcao(acao.name).percentIdeal}%</div>
+                        <div className="col-1">{handleGetAcao(acao.name).status}</div>
                     </div>
                 </div>
             ))}

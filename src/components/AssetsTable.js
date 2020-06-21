@@ -1,5 +1,8 @@
 import React from 'react'
 import { useRecoilState } from "recoil";
+import { FiPlusCircle } from 'react-icons/fi'
+
+import AssetModal from './AssetModal'
 
 import { saldoState, acoesState } from '../store/atoms'
 
@@ -31,32 +34,42 @@ const AssetsTable = () => {
     }
 
     return (
-        <div className="container">
-            <div className="card card-body">
+        <div className="">
+            <AssetModal />
+            
+            <div className="card card-body font-weight-bold">
                 <div className="row">
-                    <div className="col-5 border">Ativo</div>
-                    <div className="col-3 border">Atual</div>
-                    <div className="col-3 border">Ideal</div>
-                    <div className="col-1 border"></div>
+                    <div className="col-5 border-right text-center">Ativo</div>
+                    <div className="col-3 border-right text-center">Posição Atual</div>
+                    <div className="col-3 border-right text-center">Posição Ideal</div>
+                    <div className="col-1 text-center">Ação</div>
                 </div>
             </div>
 
             {acoes.map(acao => (
-                <div key={acao.nome} className="card card-body">
+                <div key={acao.nome} className="card card-body pointer mt-1">
                     <div className="row">
-                        <div className="col-2">{handleGetAcao(acao.nome).nome}</div>
-                        <div className="col-1">{handleGetAcao(acao.nome).nota}</div>
-                        <div className="col-2">{handleGetAcao(acao.nome).preco}</div>
-                        <div className="col">{handleGetAcao(acao.nome).quantAtual}</div>
-                        <div className="col">{handleGetAcao(acao.nome).totalAtual}</div>
-                        <div className="col">{handleGetAcao(acao.nome).percentAtual}%</div>
-                        <div className="col">{handleGetAcao(acao.nome).quantIdeal}</div>
-                        <div className="col">{handleGetAcao(acao.nome).totalIdeal}</div>
-                        <div className="col">{handleGetAcao(acao.nome).percentIdeal}%</div>
-                        <div className="col">{handleGetAcao(acao.nome).status}</div>
+                        <small className="col-2">{handleGetAcao(acao.nome).nome}</small>
+                        <small className="col-1">{handleGetAcao(acao.nome).nota}</small>
+                        <small className="col-2 border-right">{handleGetAcao(acao.nome).preco}</small>
+                        <small className="col-1">{handleGetAcao(acao.nome).quantAtual}</small>
+                        <small className="col-1">{handleGetAcao(acao.nome).totalAtual}</small>
+                        <small className="col-1 border-right">{handleGetAcao(acao.nome).percentAtual}%</small>
+                        <small className="col-1">{handleGetAcao(acao.nome).quantIdeal}</small>
+                        <small className="col-1">{handleGetAcao(acao.nome).totalIdeal}</small>
+                        <small className="col-1 border-right">{handleGetAcao(acao.nome).percentIdeal}%</small>
+                        <small className="col-1">{handleGetAcao(acao.nome).status}</small>
                     </div>
                 </div>
             ))}
+
+            <div className="card card-body pointer mt-1" data-toggle="modal" data-target="#assetModal">
+                <div className="row">
+                    <div className="col text-center">
+                        <FiPlusCircle />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

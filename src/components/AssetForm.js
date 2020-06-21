@@ -19,37 +19,16 @@ const AssetForm = () => {
     }
 
     return (
-        <div className="container">
+        <div className="">
             <div className="card card-body">
                 <div className="row">
-                    <div className="col">
-                        <input value={saldo} onChange={e => setSaldo(e.target.value)} className="form-control" />
+                    <div className="col-12">
+                        <input value={saldo} onChange={e => setSaldo(e.target.value)} className="form-control" autoFocus />
                     </div>
-                    <div className="col">
+                    <div className="col-12">
                         <input value={acoes.reduce((total, acao) => total + (acao.preco * acao.quant), 0)} className="form-control" readOnly />
                     </div>
                 </div>
-                
-                
-            </div>
-
-            <div className="card card-body">
-                <form onSubmit={handleSubmitForm}>
-                    <div className="row">
-                        <div className="col">
-                            <input value={acao.nome} onChange={e => setAcao({ ...acao, nome: e.target.value})} className="form-control" />
-                        </div>
-                        <div className="col">
-                            <input value={acao.nota} onChange={e => setAcao({ ...acao, nota: e.target.value})} className="form-control" />
-                        </div>
-                        <div className="col">
-                            <input value={acao.quant} onChange={e => setAcao({ ...acao, quant: e.target.value})} className="form-control" />
-                        </div>
-                        <div className="col">
-                            <button type="submit" className="btn btn-primary">Adicionar</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     )

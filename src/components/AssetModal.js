@@ -2,20 +2,45 @@ import React, { useState } from 'react'
 import { useRecoilState } from "recoil";
 import axios from 'axios'
 
-import { saldoState, acoesState } from '../store/atoms'
+import { saldoState, assetsState } from '../store/atoms'
 
 const AssetForm = () => {
-    const [acao, setAcao] = useState({ name: 'BIDI3', nota: 3, quant: 2, preco: 0 })
+    const [form, setForm] = useState({ label: 'PETR4', grade: 3, amount: 2 })
     const [saldo, setSaldo] = useRecoilState(saldoState);
-    const [acoes, setAcoes] = useRecoilState(acoesState);
+    const [assets, setAssets] = useRecoilState(assetsState);
 
     const handleSubmitForm = async (event) => {
         event.preventDefault()
+        
+        try {
+            const response = (await axios.get(`https://blxskdikk0.execute-api.sa-east-1.amazonaws.com/dev/quotation?label=${form.label}`)).data
 
-        const response = (await axios.get(`https://blxskdikk0.execute-api.sa-east-1.amazonaws.com/dev/quotation?label=${acao.name}`)).data
-
-        setAcoes([...acoes, { ...acao, preco: response[acao.name].price }])
-        setAcao({ name: '', nota: 0, quant: 0 })
+            if (!response[form.label]) {
+                return
+            }
+    
+            const newAssetsArray = [...assets, { ...form, price: response[form.label].price, name: response[form.label].name }]
+            const totalPrice = newAssetsArray.reduce((total, asset) => total + (asset.amount * asset.price), 0)
+            const totalGrade = newAssetsArray.reduce((total, asset) => total + (asset.grade), 0)
+    
+            setAssets(newAssetsArray.map(asset => ({
+                label: asset.label,
+                name: asset.name,
+                grade: asset.grade,
+                price: (asset.price).toFixed(2),
+                amount: Math.floor(asset.amount),
+                total: (asset.amount * asset.price).toFixed(2),
+                percent: (asset.amount * asset.price / totalPrice * 100).toFixed(1),
+                idealAmount: Math.floor((asset.grade / totalGrade) * saldo / asset.price),
+                idealTotal: ((asset.grade / totalGrade) * saldo).toFixed(2),
+                idealPercent: (asset.grade / totalGrade * 100).toFixed(1),
+                status: ((asset.grade / totalGrade) * saldo / asset.price) > asset.amount
+            })))
+            
+            setForm({ label: '', grade: 0, amount: 0 })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -34,14 +59,15 @@ const AssetForm = () => {
                         <form onSubmit={handleSubmitForm}>
                             <div className="row">
                                 <div className="col">
-                                    <input value={acao.name} onChange={e => setAcao({ ...acao, name: e.target.value})} className="form-control" />
+                                    <input value={form.label} onChange={e => setForm({ ...form, label: e.target.value})} className="form-control" />
                                 </div>
                                 <div className="col">
-                                    <input value={acao.nota} onChange={e => setAcao({ ...acao, nota: e.target.value})} className="form-control" />
+                                    <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value})} className="form-control" />
                                 </div>
                                 <div className="col">
-                                    <input value={acao.quant} onChange={e => setAcao({ ...acao, quant: e.target.value})} className="form-control" />
+                                    <input value={form.amount} onChange={e => setForm({ ...form, amount: e.target.value})} className="form-control" />
                                 </div>
+                                <button type="submit" className="btn btn-primary">Salvar alterações</button>
                             </div>
                         </form>
                     </div>

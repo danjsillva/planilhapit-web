@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useRecoilState } from "recoil";
 import { PieChart, Pie, Sector } from 'recharts';
 
-import { saldoState, acoesState } from '../store/atoms'
+import { saldoState, assetsState } from '../store/atoms'
 
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
@@ -51,39 +51,44 @@ const renderActiveShape = (props) => {
 
 const AssetForm = () => {
     const [activeIndex, setActiveIndex] = useState(0)
-    const [acoes, setAcoes] = useRecoilState(acoesState);
+    const [assets,] = useRecoilState(assetsState);
 
     return (
         <div className="card card-body mt-1">
-            <PieChart width={400} height={400}>
-                <Pie
-                    data={acoes}
-                    cx={200}
-                    cy={200}
-                    innerRadius={60}
-                    outerRadius={80}
-                    fill="#0d6efd"
-                    dataKey="quant"
-                    activeIndex={activeIndex}
-                    activeShape={renderActiveShape} 
-                    onMouseEnter={(data, index) => setActiveIndex(index)}
-                />
-            </PieChart>
-
-            <PieChart width={400} height={400}>
-                <Pie
-                    data={acoes}
-                    cx={200}
-                    cy={200}
-                    innerRadius={60}
-                    outerRadius={80}
-                    fill="#0d6efd"
-                    dataKey="quant"
-                    activeIndex={activeIndex}
-                    activeShape={renderActiveShape} 
-                    onMouseEnter={(data, index) => setActiveIndex(index)}
-                />
-            </PieChart>
+            <div className="row">
+                <div className="col">
+                    <PieChart width={400} height={400}>
+                        <Pie
+                            data={assets}
+                            cx={200}
+                            cy={200}
+                            innerRadius={60}
+                            outerRadius={80}
+                            fill="#0d6efd"
+                            dataKey="quant"
+                            activeIndex={activeIndex}
+                            activeShape={renderActiveShape} 
+                            onMouseEnter={(data, index) => setActiveIndex(index)}
+                        />
+                    </PieChart>
+                </div>
+                <div className="col">
+                    <PieChart width={400} height={400}>
+                        <Pie
+                            data={assets}
+                            cx={200}
+                            cy={200}
+                            innerRadius={60}
+                            outerRadius={80}
+                            fill="#0d6efd"
+                            dataKey="quant"
+                            activeIndex={activeIndex}
+                            activeShape={renderActiveShape} 
+                            onMouseEnter={(data, index) => setActiveIndex(index)}
+                        />
+                    </PieChart>
+                </div>
+            </div>
         </div>
     )
 }

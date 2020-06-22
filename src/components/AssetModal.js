@@ -26,14 +26,14 @@ const AssetForm = () => {
             setAssets(newAssetsArray.map(asset => ({
                 label: asset.label,
                 name: asset.name,
-                grade: asset.grade,
-                price: (asset.price).toFixed(2),
-                amount: Math.floor(asset.amount),
-                total: (asset.amount * asset.price).toFixed(2),
-                percent: (asset.amount * asset.price / totalPrice * 100).toFixed(1),
-                idealAmount: Math.floor((asset.grade / totalGrade) * saldo / asset.price),
-                idealTotal: ((asset.grade / totalGrade) * saldo).toFixed(2),
-                idealPercent: (asset.grade / totalGrade * 100).toFixed(1),
+                grade: parseInt(asset.grade),
+                price: parseFloat(asset.price.toFixed(2)),
+                amount: parseInt(Math.floor(asset.amount)),
+                total: parseFloat((asset.amount * asset.price).toFixed(2)),
+                percent: parseFloat((asset.amount * asset.price / totalPrice * 100).toFixed(1)),
+                idealAmount: parseInt(Math.floor((asset.grade / totalGrade) * saldo / asset.price)),
+                idealTotal: parseFloat((asset.grade / totalGrade * saldo).toFixed(2)),
+                idealPercent: parseFloat((asset.grade / totalGrade * 100).toFixed(1)),
                 status: ((asset.grade / totalGrade) * saldo / asset.price) > asset.amount
             })))
             

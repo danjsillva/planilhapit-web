@@ -22,9 +22,8 @@ const AssetsTable = () => {
                     <div className="col-1 text-center">Ação</div>
                 </div>
             </div>
-            {JSON.stringify(assets)}
 
-            {assets.lenght && assets.map(asset => (
+            {assets.map(asset => (
                 <div key={asset.label} className="card card-body pointer mt-1">
                     <div className="row">
                         <div className="col-2">{asset.label}</div>

@@ -25,8 +25,8 @@ const AssetsTable = () => {
       {assets.map((asset) => (
         <div key={asset.label} className="card card-body pointer mt-1">
           <div className="row">
-            <div className="col-2">{asset.label}</div>
-            <div className="col-1">{asset.grade}</div>
+            <div className="col">{asset.label}</div>
+            <div className="col">{asset.grade}</div>
             <div className="col-2 border-right">
               R$ {asset.price.toFixed(2)}
             </div>

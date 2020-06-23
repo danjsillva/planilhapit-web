@@ -12,10 +12,10 @@ const App = () => {
     <RecoilRoot>
       <div className="container">
         <div className="row mt-5">
-          <div className="col-12 col-lg-3">
+          <div className="col-12 col-lg-2">
             <Sidebar />
           </div>
-          <div className="col-12 col-lg-9">
+          <div className="col-12 col-lg-10">
             <AssetsTable />
 
             <AssetsChart />

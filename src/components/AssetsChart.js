@@ -100,22 +100,6 @@ const AssetChart = () => {
             />
           </PieChart>
         </div>
-        <div className="col">
-          <PieChart width={400} height={400}>
-            <Pie
-              data={assets}
-              cx={200}
-              cy={200}
-              innerRadius={60}
-              outerRadius={80}
-              fill="#0d6efd"
-              dataKey="idealAmount"
-              activeIndex={activeIndex}
-              activeShape={renderActiveShape}
-              onMouseEnter={(data, index) => setActiveIndex(index)}
-            />
-          </PieChart>
-        </div>
       </div>
     </div>
   );

@@ -16,7 +16,12 @@ const AssetForm = () => {
                         <input value={saldo} onChange={e => setSaldo(e.target.value)} className="form-control" autoFocus />
                         <div className="form-text">Seu saldo total na corretora.</div>
                     </div>
-                    <div className="col-6 col-lg-12 mt-3">
+                </div>
+            </div>
+
+            <div className="card card-body mt-1">
+                <div className="row">
+                    <div className="col-6 col-lg-12">
                         <label htmlFor="">Total investido</label>
                         <input value={assets.reduce((total, asset) => total + (asset.price * asset.amount), 0).toFixed(2)} className="form-control" readOnly />
                     </div>

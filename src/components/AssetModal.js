@@ -59,7 +59,7 @@ const AssetForm = () => {
                         <form onSubmit={handleSubmitForm}>
                             <div className="row">
                                 <div className="col">
-                                    <input value={form.label} onChange={e => setForm({ ...form, label: e.target.value})} className="form-control" />
+                                    <input value={form.label} onChange={e => setForm({ ...form, label: e.target.value.toUpperCase()})} className="form-control" />
                                 </div>
                                 <div className="col">
                                     <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value})} className="form-control" />

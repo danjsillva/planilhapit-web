@@ -20,7 +20,7 @@ const renderActiveShape = (props) => {
   
     return (
       <g>
-        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.name}</text>
+        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.label}</text>
         <Sector
           cx={cx}
           cy={cy}
@@ -52,6 +52,7 @@ const renderActiveShape = (props) => {
 const AssetForm = () => {
     const [activeIndex, setActiveIndex] = useState(0)
     const [assets,] = useRecoilState(assetsState);
+console.log(assets);
 
     return (
         <div className="card card-body mt-1">
@@ -65,7 +66,7 @@ const AssetForm = () => {
                             innerRadius={60}
                             outerRadius={80}
                             fill="#0d6efd"
-                            dataKey="quant"
+                            dataKey="amount"
                             activeIndex={activeIndex}
                             activeShape={renderActiveShape} 
                             onMouseEnter={(data, index) => setActiveIndex(index)}
@@ -81,7 +82,7 @@ const AssetForm = () => {
                             innerRadius={60}
                             outerRadius={80}
                             fill="#0d6efd"
-                            dataKey="quant"
+                            dataKey="idealAmount"
                             activeIndex={activeIndex}
                             activeShape={renderActiveShape} 
                             onMouseEnter={(data, index) => setActiveIndex(index)}

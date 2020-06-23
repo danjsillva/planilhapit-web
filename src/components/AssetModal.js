@@ -6,7 +6,7 @@ import { saldoState, assetsState } from '../store/atoms'
 
 const AssetForm = () => {
     const [form, setForm] = useState({ label: 'PETR4', grade: 3, amount: 2 })
-    const [saldo, setSaldo] = useRecoilState(saldoState);
+    const [saldo,] = useRecoilState(saldoState);
     const [assets, setAssets] = useRecoilState(assetsState);
 
     const handleSubmitForm = async (event) => {

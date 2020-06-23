@@ -4,10 +4,9 @@ import { FiPlusCircle } from 'react-icons/fi'
 
 import AssetModal from './AssetModal'
 
-import { saldoState, assetsState } from '../store/atoms'
+import { assetsState } from '../store/atoms'
 
 const AssetsTable = () => {
-    const [saldo,] = useRecoilState(saldoState);
     const [assets,] = useRecoilState(assetsState);
 
     return (

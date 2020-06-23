@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useRecoilState } from "recoil";
 import { PieChart, Pie, Sector } from 'recharts';
 
-import { saldoState, assetsState } from '../store/atoms'
+import { assetsState } from '../store/atoms'
 
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;

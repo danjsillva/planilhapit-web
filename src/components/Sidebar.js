@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useRecoilState } from "recoil";
 
 import { saldoState, assetsState } from '../store/atoms'
 
 const AssetForm = () => {
     const [saldo, setSaldo] = useRecoilState(saldoState);
-    const [assets, setAssets] = useRecoilState(assetsState);
+    const [assets,] = useRecoilState(assetsState);
 
     return (
         <div className="">

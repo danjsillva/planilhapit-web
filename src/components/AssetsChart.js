@@ -52,7 +52,6 @@ const renderActiveShape = (props) => {
 const AssetForm = () => {
     const [activeIndex, setActiveIndex] = useState(0)
     const [assets,] = useRecoilState(assetsState);
-console.log(assets);
 
     return (
         <div className="card card-body mt-1">

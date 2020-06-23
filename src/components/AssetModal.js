@@ -27,17 +27,17 @@ const AssetForm = () => {
                 label: asset.label,
                 name: asset.name,
                 grade: parseInt(asset.grade),
-                price: parseFloat(asset.price.toFixed(2)),
+                price: parseFloat(asset.price),
                 amount: parseInt(Math.floor(asset.amount)),
-                total: parseFloat((asset.amount * asset.price).toFixed(2)),
-                percent: parseFloat((asset.amount * asset.price / totalPrice * 100).toFixed(1)),
+                total: parseFloat((asset.amount * asset.price)),
+                percent: parseFloat((asset.amount * asset.price / totalPrice * 100)),
                 idealAmount: parseInt(Math.floor((asset.grade / totalGrade) * saldo / asset.price)),
-                idealTotal: parseFloat((asset.grade / totalGrade * saldo).toFixed(2)),
-                idealPercent: parseFloat((asset.grade / totalGrade * 100).toFixed(1)),
+                idealTotal: parseFloat(Math.floor((asset.grade / totalGrade) * saldo / asset.price) * asset.price),
+                idealPercent: parseFloat((asset.grade / totalGrade * 100)),
                 status: ((asset.grade / totalGrade) * saldo / asset.price) > asset.amount
             })))
             
-            setForm({ label: '', grade: 0, amount: 0 })
+            // setForm({ label: '', grade: 0, amount: 0 })
         } catch (error) {
             console.log(error);
         }

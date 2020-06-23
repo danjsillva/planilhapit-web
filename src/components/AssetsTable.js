@@ -28,13 +28,13 @@ const AssetsTable = () => {
                     <div className="row">
                         <div className="col-2">{asset.label}</div>
                         <div className="col-1">{asset.grade}</div>
-                        <div className="col-2 border-right">{asset.price}</div>
+                        <div className="col-2 border-right">R$ {asset.price.toFixed(2)}</div>
                         <div className="col-1">{asset.amount}</div>
-                        <div className="col-1">{asset.total}</div>
-                        <div className="col-1 border-right">{asset.percent}%</div>
+                        <div className="col-1">R$ {asset.total.toFixed(2)}</div>
+                        <div className="col-1 border-right">{asset.percent.toFixed(1)}%</div>
                         <div className="col-1">{asset.idealAmount}</div>
-                        <div className="col-1">{asset.idealTotal}</div>
-                        <div className="col-1 border-right">{asset.idealPercent}%</div>
+                        <div className="col-1">R$ {asset.idealTotal.toFixed(2)}</div>
+                        <div className="col-1 border-right">{asset.idealPercent.toFixed(1)}%</div>
                         <div className="col-1">{asset.status}</div>
                     </div>
                 </div>

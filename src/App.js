@@ -1,11 +1,11 @@
-import React from 'react';
-import { RecoilRoot } from 'recoil'
+import React from "react";
+import { RecoilRoot } from "recoil";
 
-import Sidebar from './components/Sidebar'
-import AssetsTable from './components/AssetsTable'
-import AssetsChart from './components/AssetsChart'
+import Sidebar from "./components/Sidebar";
+import AssetsTable from "./components/AssetsTable";
+import AssetsChart from "./components/AssetsChart";
 
-import './style.css'
+import "./style.css";
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
       <div className="container">
         <div className="row mt-5">
           <div className="col-12 col-lg-3">
-            <Sidebar />   
+            <Sidebar />
           </div>
           <div className="col-12 col-lg-9">
             <AssetsTable />
@@ -24,6 +24,6 @@ const App = () => {
       </div>
     </RecoilRoot>
   );
-}
+};
 
-export default App
+export default App;

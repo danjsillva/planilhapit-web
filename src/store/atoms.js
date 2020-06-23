@@ -1,8 +1,8 @@
-import { atom } from "recoil"
+import { atom } from "recoil";
 
-export const saldoState = atom({ key: 'saldoState', default: 200 })
+export const saldoState = atom({ key: "saldoState", default: 200 });
 
-export const assetsState = atom({ key: 'assetsState', default: []})
+export const assetsState = atom({ key: "assetsState", default: [] });
 
 // export const assetsState = atom({ key: 'assetsState', default: [
 //     { name: 'PETR4', grade: 2, preco: 10, quant: 6 },

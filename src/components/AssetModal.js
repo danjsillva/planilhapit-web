@@ -4,13 +4,19 @@ import axios from 'axios'
 
 import { saldoState, assetsState } from '../store/atoms'
 
-const AssetForm = () => {
+const AssetModal = () => {
     const [form, setForm] = useState({ label: 'PETR4', grade: 3, amount: 2 })
+    const [error, setError] = useState()
     const [saldo,] = useRecoilState(saldoState);
     const [assets, setAssets] = useRecoilState(assetsState);
 
     const handleSubmitForm = async (event) => {
         event.preventDefault()
+
+        if (assets.some(asset => asset.label === form.label)) {
+            setError('Este ativo já foi adicionado!')
+            return
+        }
         
         try {
             const response = (await axios.get(`https://blxskdikk0.execute-api.sa-east-1.amazonaws.com/dev/quotation?label=${form.label}`)).data
@@ -79,6 +85,12 @@ const AssetForm = () => {
                                 </div>
                             </div>
                         </form>
+
+                        <div className="row">
+                            <div className="col-6 offset-3 text-danger mt-3">
+                                {error && <span>{error}</span>}
+                            </div>
+                        </div>
                     </div>
 
                     <div className="modal-footer">
@@ -91,4 +103,4 @@ const AssetForm = () => {
     )
 }
 
-export default AssetForm
+export default AssetModal

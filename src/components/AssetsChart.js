@@ -49,7 +49,7 @@ const renderActiveShape = (props) => {
     );
 };
 
-const AssetForm = () => {
+const AssetChart = () => {
     const [activeIndex, setActiveIndex] = useState(0)
     const [assets,] = useRecoilState(assetsState);
 
@@ -93,4 +93,4 @@ const AssetForm = () => {
     )
 }
 
-export default AssetForm
+export default AssetChart

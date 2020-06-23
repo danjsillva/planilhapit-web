@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 
 import { saldoState, assetsState } from '../store/atoms'
 
-const AssetForm = () => {
+const Sidebar = () => {
     const [saldo, setSaldo] = useRecoilState(saldoState);
     const [assets,] = useRecoilState(assetsState);
 
@@ -35,4 +35,4 @@ const AssetForm = () => {
     )
 }
 
-export default AssetForm
+export default Sidebar

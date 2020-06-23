@@ -3,6 +3,10 @@ body {
     background-color: #fafafa;
 }
 
+label {
+    font-weight: bold;
+}
+
 .pointer {
     cursor: pointer;
 }

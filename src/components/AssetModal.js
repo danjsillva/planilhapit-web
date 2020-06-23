@@ -58,23 +58,32 @@ const AssetForm = () => {
                     <div className="modal-body">
                         <form onSubmit={handleSubmitForm}>
                             <div className="row">
-                                <div className="col">
+                                <div className="col-6 offset-3">
+                                    <label htmlFor="">Ativo</label>
                                     <input value={form.label} onChange={e => setForm({ ...form, label: e.target.value.toUpperCase()})} className="form-control" />
+                                    <div className="form-text">Código do ativo. Ex.: PETR4.</div>
                                 </div>
-                                <div className="col">
-                                    <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value})} className="form-control" />
+                            </div>
+                            <div className="row">
+                                <div className="col-6 offset-3 mt-3">
+                                    <label htmlFor="">Nota</label>
+                                    <input type="number" value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value})} className="form-control" />
+                                    <div className="form-text">A sua nota para esse ativo.</div>
                                 </div>
-                                <div className="col">
-                                    <input value={form.amount} onChange={e => setForm({ ...form, amount: e.target.value})} className="form-control" />
+                            </div>
+                            <div className="row">
+                                <div className="col-6 offset-3 mt-3">
+                                    <label htmlFor="">Quantidade</label>
+                                    <input type="number" value={form.amount} onChange={e => setForm({ ...form, amount: e.target.value})} className="form-control" />
+                                    <div className="form-text">Quantidade desse ativo na sua carteira atualmente.</div>
                                 </div>
-                                <button type="submit" className="btn btn-primary">Salvar alterações</button>
                             </div>
                         </form>
                     </div>
 
                     <div className="modal-footer">
+                        <button type="button" className="btn btn-primary" onClick={handleSubmitForm}>Salvar alterações</button>
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <button type="button" className="btn btn-primary">Salvar alterações</button>
                     </div>
                 </div>
             </div>

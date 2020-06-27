@@ -92,7 +92,7 @@ const StockChart = () => {
               cy={200}
               innerRadius={60}
               outerRadius={80}
-              fill="#0d6efd"
+              fill="#343a40"
               dataKey="volume"
               activeIndex={activeIndex}
               activeShape={renderActiveShape}

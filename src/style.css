@@ -7,6 +7,11 @@ body {
   background-color: #fafafa;
 }
 
+* {
+  outline: none;
+  box-shadow:none !important;
+}
+
 .pointer {
   cursor: pointer;
 }

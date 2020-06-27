@@ -51,6 +51,17 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
+
+      <div className="mt-2">
+        <div className="row">
+          <div className="col-6 col-lg-12">
+            <button className="btn btn-dark btn-block">Entrar</button>
+          </div>
+          <div className="col-6 col-lg-12 mt-1">
+            <button className="btn btn-link btn-sm btn-block text-dark">Cadastrar</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

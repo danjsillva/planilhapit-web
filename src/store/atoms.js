@@ -5,8 +5,8 @@ export const balanceState = atom({ key: "balanceState", default: 200 });
 export const stockListState = atom({ key: "stockListState", default: [] });
 
 // export const stockListState = atom({ key: 'stockListState', default: [
-//     { name: 'PETR4', grade: 2, preco: 10, quant: 6 },
-//     { name: 'SQIA3', grade: 1, preco: 10, quant: 2 },
-//     { name: 'IVVB11', grade: 1, preco: 10, quant: 2 },
-//     { name: 'CSNA3', grade: 1, preco: 10, quant: 2 },
+//     { symbol: 'PETR4', name: 'Petroleo Brasileiro SA Petrobras Preference Shares', grade: 2, price: 10, volume: 6 },
+//     { symbol: 'SQIA3', name: 'Sinqia SA', grade: 1, price: 10, volume: 2 },
+//     { symbol: 'IVVB11', name: 'ISHARESSPDGG/Ut BRL', grade: 1, price: 10, volume: 2 },
+//     { symbol: 'CSNA3', name: 'Companhia Siderurgica Nacional', grade: 1, price: 10, volume: 2 },
 // ]})

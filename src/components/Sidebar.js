@@ -47,7 +47,18 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="mt-2">
+      <div className="mt-3">
+        <div className="row">
+          <div className="col-6 col-lg-12">
+            <button className="btn btn-dark btn-block">Exportar CSV</button>
+          </div>
+          <div className="col-6 col-lg-12 mt-1">
+            <button className="btn btn-dark btn-block">Importar CSV</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5">
         <div className="row">
           <div className="col-6 col-lg-12">
             <button className="btn btn-dark btn-block disabled">Entrar</button>

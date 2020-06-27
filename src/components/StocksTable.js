@@ -14,8 +14,8 @@ const EmptyState = () => {
       </span>
 
       <div className="font-weight-bold mt-3">Parece que sua planilha está vazia!</div>
-      <div className="">Comece atualizado o seu saldo e depois adicione o seu primeiro ativo.</div>
-      <div className="">Que tal criar uma conta e sincronizar os seus dados?</div>
+      <div className="text-muted">Comece atualizado o seu saldo e depois adicione o seu primeiro ativo.</div>
+      <div className="text-muted">Que tal criar uma conta e sincronizar os seus dados?</div>
 
       <button 
         className="btn btn-dark px-5 mt-5" 
@@ -27,14 +27,38 @@ const EmptyState = () => {
   )
 }
 
+const StockCell = ({ symbol, name, grade, price }) => {
+  return (
+    <div className="row">
+      <div className="col-4" title={name}>{symbol}</div>
+      <div className="col-2 text-right" title="Nota">{grade}</div>
+      <div className="col-6 text-right border-right" title="Preço">
+        R$ {price.toFixed(2)}
+      </div>
+    </div>
+  )
+}
+
+const PositionCell = ({ volume, total, percent }) => {
+  return (
+    <div className="row">
+      <div className="col-3 text-right" title="Quantidade">{volume}</div>
+      <div className="col-6 text-right" title="Total">R$ {total.toFixed(2)}</div>
+      <div className="col-3 text-right border-right" title="Percentual">
+        {percent.toFixed(1)}%
+      </div>
+    </div>
+  )
+}
+
 const Table = ({ stocks }) => {
   return (
     <>
       <div className="card card-body font-weight-bold">
         <div className="row">
-          <div className="col-5 border-right text-center">Ativo</div>
-          <div className="col-3 border-right text-center">Posição Atual</div>
-          <div className="col-3 border-right text-center">Posição Ideal</div>
+          <div className="col-3 text-center border-right">Ativo</div>
+          <div className="col-4 text-center border-right">Posição Atual</div>
+          <div className="col-4 text-center border-right">Posição Ideal</div>
           <div className="col-1 text-center">Ação</div>
         </div>
       </div>
@@ -42,23 +66,46 @@ const Table = ({ stocks }) => {
       {stocks.map((stock) => (
         <div key={stock.symbol} className="card card-body pointer mt-1">
           <div className="row">
-            <div className="col">{stock.symbol}</div>
-            <div className="col">{stock.grade}</div>
-            <div className="col-2 border-right">
-              R$ {stock.price.toFixed(2)}
+            <div className="col-3">
+              <StockCell symbol={stock.symbol} name={stock.name} grade={stock.grade} price={stock.price} />
             </div>
-            <div className="col-1">{stock.volume}</div>
-            <div className="col-1">R$ {stock.total.toFixed(2)}</div>
-            <div className="col-1 border-right">
-              {stock.percent.toFixed(1)}%
+            <div className="col-4">
+              <PositionCell volume={stock.volume} total={stock.total} percent={stock.percent} />
             </div>
-            <div className="col-1">{stock.idealVolume}</div>
-            <div className="col-1">R$ {stock.idealTotal.toFixed(2)}</div>
-            <div className="col-1 border-right">
-              {stock.idealPercent.toFixed(1)}%
+            <div className="col-4">
+              <PositionCell volume={stock.idealVolume} total={stock.idealTotal} percent={stock.idealPercent} />
             </div>
-            <div className="col-1">{stock.status}</div>
+            <div className="col-1">{JSON.stringify(stock.status)}</div>
           </div>
+          {/* <div className="row py-5">
+            <div className="col">
+              <form>
+                <div className="row">
+                  <div className="col-6 offset-3">
+                    <label htmlFor="">Ativo</label>
+                    <input value={stock.symbol} className="form-control" />
+                    <div className="form-text">Código do ativo. Ex.: PETR4.</div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-6 offset-3 mt-3">
+                    <label htmlFor="">Nota</label>
+                    <input type="number" value={stock.grade} className="form-control" />
+                    <div className="form-text">A sua nota para esse ativo.</div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-6 offset-3 mt-3">
+                    <label htmlFor="">Quantidade</label>
+                    <input type="number" value={stock.volume} className="form-control" />
+                    <div className="form-text">
+                      Quantidade desse ativo na sua carteira atualmente.
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div> */}
         </div>
       ))}
 

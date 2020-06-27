@@ -29,7 +29,7 @@ const Sidebar = () => {
       <div className="card card-body mt-1">
         <div className="row">
           <div className="col-6 col-lg-12">
-            <label htmlFor="">Total investido</label>
+            <label htmlFor="">Total atual</label>
             <input
               value={stockListTotal.toFixed(2)}
               className="form-control"

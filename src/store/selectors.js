@@ -2,8 +2,26 @@ import { selector } from "recoil"
 
 import { balanceState, stockListState } from "../store/atoms"
 
-export const fullStockListState = selector({
-  key: 'fullStockListState',
+export const stockListTotalState = selector({
+  key: 'stockListTotalState',
+  get: async ({ get }) => {
+    const stockList = get(stockListState);
+
+    return stockList.reduce((total, stock) => total + stock.price * stock.volume, 0)
+  }
+});
+
+export const stockListIdealTotalState = selector({
+  key: 'stockListIdealTotalState',
+  get: async ({ get }) => {
+    const stockList = get(stockListFullState);
+
+    return stockList.reduce((total, stock) => total + stock.price * stock.idealVolume, 0)
+  }
+});
+
+export const stockListFullState = selector({
+  key: 'stockListFullState',
   get: async ({ get }) => {
     const stockList = get(stockListState);
     const balance = get(balanceState);

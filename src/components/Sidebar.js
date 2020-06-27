@@ -1,11 +1,13 @@
 import React from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
-import { balanceState, stockListState } from "../store/atoms";
+import { balanceState } from "../store/atoms";
+import { stockListTotalState, stockListIdealTotalState } from "../store/selectors";
 
 const Sidebar = () => {
   const [balance, setBalance] = useRecoilState(balanceState);
-  const [stocks] = useRecoilState(stockListState);
+  const stockListTotal = useRecoilValue(stockListTotalState);
+  const stockListIdealTotal = useRecoilValue(stockListIdealTotalState);
 
   return (
     <div className="">
@@ -29,9 +31,7 @@ const Sidebar = () => {
           <div className="col-6 col-lg-12">
             <label htmlFor="">Total investido</label>
             <input
-              value={stocks
-                .reduce((total, stock) => total + stock.price * stock.volume, 0)
-                .toFixed(2)}
+              value={stockListTotal.toFixed(2)}
               className="form-control"
               readOnly
             />
@@ -39,12 +39,7 @@ const Sidebar = () => {
           <div className="col-6 col-lg-12 mt-3">
             <label htmlFor="">Total ideal</label>
             <input
-              value={stocks
-                .reduce(
-                  (total, stock) => total + stock.price * stock.idealVolume,
-                  0
-                )
-                .toFixed(2)}
+              value={stockListIdealTotal.toFixed(2)}
               className="form-control"
               readOnly
             />

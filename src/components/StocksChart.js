@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { PieChart, Pie, Sector } from "recharts";
 
-import { stockListState } from "../store/atoms";
+import { stockListFullState } from "../store/selectors";
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -79,7 +79,7 @@ const renderActiveShape = (props) => {
 
 const StockChart = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [stocks] = useRecoilState(stockListState);
+  const stocks = useRecoilValue(stockListFullState);
 
   return (
     <div className="card card-body mt-1">

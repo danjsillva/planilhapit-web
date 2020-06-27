@@ -4,10 +4,10 @@ import { FiPlusCircle } from "react-icons/fi";
 
 import StockModal from "./StockModal";
 
-import { fullStockListState } from "../store/selectors";
+import { stockListFullState } from "../store/selectors";
 
 const StocksTable = () => {
-  const stocks = useRecoilValue(fullStockListState);
+  const stocks = useRecoilValue(stockListFullState);
 
   return (
     <div className="">

@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import axios from "axios";
 
-import { saldoState, assetsState } from "../store/atoms";
+import { stockListState } from "../store/atoms";
 
-const AssetModal = () => {
-  const [form, setForm] = useState({ label: "PETR4", grade: 3, amount: 2 });
+const StockModal = () => {
+  const [form, setForm] = useState({ symbol: "PETR4", grade: 3, volume: 2 });
   const [error, setError] = useState();
-  const [saldo] = useRecoilState(saldoState);
-  const [assets, setAssets] = useRecoilState(assetsState);
+  const [stocks, setStocks] = useRecoilState(stockListState);
 
   const handleSubmitForm = async (event) => {
     event.preventDefault();
 
-    if (assets.some((asset) => asset.label === form.label)) {
+    if (stocks.some((stock) => stock.symbol === form.symbol)) {
       setError("Este ativo já foi adicionado!");
       return;
     }
@@ -21,63 +20,31 @@ const AssetModal = () => {
     try {
       const response = (
         await axios.get(
-          `https://blxskdikk0.execute-api.sa-east-1.amazonaws.com/dev/quotation?label=${form.label}`
+          `https://blxskdikk0.execute-api.sa-east-1.amazonaws.com/dev/quotation?label=${form.symbol}`
         )
       ).data;
 
-      if (!response[form.label]) {
+      if (!response[form.symbol]) {
         return;
       }
 
-      const newAssetsArray = [
-        ...assets,
+      setStocks([
+        ...stocks,
         {
           ...form,
-          price: response[form.label].price,
-          name: response[form.label].name,
+          price: response[form.symbol].price,
+          name: response[form.symbol].name,
         },
-      ];
-      const totalPrice = newAssetsArray.reduce(
-        (total, asset) => total + asset.amount * asset.price,
-        0
-      );
-      const totalGrade = newAssetsArray.reduce(
-        (total, asset) => total + asset.grade,
-        0
-      );
+      ]);
 
-      setAssets(
-        newAssetsArray.map((asset) => ({
-          label: asset.label,
-          name: asset.name,
-          grade: parseInt(asset.grade),
-          price: parseFloat(asset.price),
-          amount: parseInt(Math.floor(asset.amount)),
-          total: parseFloat(asset.amount * asset.price),
-          percent: parseFloat(
-            ((asset.amount * asset.price) / totalPrice) * 100
-          ),
-          idealAmount: parseInt(
-            Math.floor(((asset.grade / totalGrade) * saldo) / asset.price)
-          ),
-          idealTotal: parseFloat(
-            Math.floor(((asset.grade / totalGrade) * saldo) / asset.price) *
-              asset.price
-          ),
-          idealPercent: parseFloat((asset.grade / totalGrade) * 100),
-          status:
-            ((asset.grade / totalGrade) * saldo) / asset.price > asset.amount,
-        }))
-      );
-
-      // setForm({ label: '', grade: 0, amount: 0 })
+      // setForm({ symbol: '', grade: 0, volume: 0 })
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="modal" id="assetModal">
+    <div className="modal" id="stockModal">
       <div className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-header">
@@ -94,9 +61,9 @@ const AssetModal = () => {
                 <div className="col-6 offset-3">
                   <label htmlFor="">Ativo</label>
                   <input
-                    value={form.label}
+                    value={form.symbol}
                     onChange={(e) =>
-                      setForm({ ...form, label: e.target.value.toUpperCase() })
+                      setForm({ ...form, symbol: e.target.value.toUpperCase() })
                     }
                     className="form-control"
                   />
@@ -122,9 +89,9 @@ const AssetModal = () => {
                   <label htmlFor="">Quantidade</label>
                   <input
                     type="number"
-                    value={form.amount}
+                    value={form.volume}
                     onChange={(e) =>
-                      setForm({ ...form, amount: e.target.value })
+                      setForm({ ...form, volume: e.target.value })
                     }
                     className="form-control"
                   />
@@ -164,4 +131,4 @@ const AssetModal = () => {
   );
 };
 
-export default AssetModal;
+export default StockModal;

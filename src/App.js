@@ -1,27 +1,29 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { RecoilRoot } from "recoil";
 
 import Sidebar from "./components/Sidebar";
-import AssetsTable from "./components/AssetsTable";
-import AssetsChart from "./components/AssetsChart";
+import StocksTable from "./components/StocksTable";
+import StocksChart from "./components/StocksChart";
 
 import "./style.css";
 
 const App = () => {
   return (
     <RecoilRoot>
-      <div className="container">
-        <div className="row mt-5">
-          <div className="col-12 col-lg-2">
-            <Sidebar />
-          </div>
-          <div className="col-12 col-lg-10">
-            <AssetsTable />
+      <Suspense fallback={'Loading'}>
+        <div className="container">
+          <div className="row mt-5">
+            <div className="col-12 col-lg-2">
+              <Sidebar />
+            </div>
+            <div className="col-12 col-lg-10">
+              <StocksTable />
 
-            <AssetsChart />
+              <StocksChart />
+            </div>
           </div>
         </div>
-      </div>
+      </Suspense>
     </RecoilRoot>
   );
 };

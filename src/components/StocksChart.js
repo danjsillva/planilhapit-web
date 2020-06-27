@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { PieChart, Pie, Sector } from "recharts";
 
-import { assetsState } from "../store/atoms";
+import { stockListState } from "../store/atoms";
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -32,7 +32,7 @@ const renderActiveShape = (props) => {
   return (
     <g>
       <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.label}
+        {payload.symbol}
       </text>
       <Sector
         cx={cx}
@@ -77,9 +77,9 @@ const renderActiveShape = (props) => {
   );
 };
 
-const AssetChart = () => {
+const StockChart = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [assets] = useRecoilState(assetsState);
+  const [stocks] = useRecoilState(stockListState);
 
   return (
     <div className="card card-body mt-1">
@@ -87,13 +87,13 @@ const AssetChart = () => {
         <div className="col">
           <PieChart width={400} height={400}>
             <Pie
-              data={assets}
+              data={stocks}
               cx={200}
               cy={200}
               innerRadius={60}
               outerRadius={80}
               fill="#0d6efd"
-              dataKey="amount"
+              dataKey="volume"
               activeIndex={activeIndex}
               activeShape={renderActiveShape}
               onMouseEnter={(data, index) => setActiveIndex(index)}
@@ -105,4 +105,4 @@ const AssetChart = () => {
   );
 };
 
-export default AssetChart;
+export default StockChart;

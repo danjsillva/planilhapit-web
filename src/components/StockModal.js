@@ -20,7 +20,7 @@ const StockModal = () => {
     try {
       const response = (
         await axios.get(
-          `https://blxskdikk0.execute-api.sa-east-1.amazonaws.com/dev/quotation?label=${form.symbol}`
+          `https://blxskdikk0.execute-api.sa-east-1.amazonaws.com/dev/quotation?symbol=${form.symbol}`
         )
       ).data;
 

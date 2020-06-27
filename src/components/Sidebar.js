@@ -1,11 +1,15 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { CSVLink, CSVDownload } from "react-csv";
 
-import { balanceState } from "../store/atoms";
+import ImportModal from './ImportModal'
+
+import { balanceState, stockListState } from "../store/atoms";
 import { stockListTotalState, stockListIdealTotalState } from "../store/selectors";
 
 const Sidebar = () => {
   const [balance, setBalance] = useRecoilState(balanceState);
+  const [stocks,] = useRecoilState(stockListState);
   const stockListTotal = useRecoilValue(stockListTotalState);
   const stockListIdealTotal = useRecoilValue(stockListIdealTotalState);
 
@@ -50,10 +54,10 @@ const Sidebar = () => {
       <div className="mt-3">
         <div className="row">
           <div className="col-6 col-lg-12">
-            <button className="btn btn-dark btn-block">Exportar CSV</button>
+            <CSVLink data={stocks} separator={";"} className="btn btn-dark btn-block">Exportar CSV</CSVLink>
           </div>
           <div className="col-6 col-lg-12 mt-1">
-            <button className="btn btn-dark btn-block">Importar CSV</button>
+            <button className="btn btn-dark btn-block" data-toggle="modal" data-target="#importModal">Importar CSV</button>
           </div>
         </div>
       </div>
@@ -68,6 +72,8 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
+
+      <ImportModal />
     </div>
   );
 };

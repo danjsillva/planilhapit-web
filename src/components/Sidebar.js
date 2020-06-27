@@ -53,7 +53,7 @@ const Sidebar = () => {
             <button className="btn btn-dark btn-block">Entrar</button>
           </div>
           <div className="col-6 col-lg-12 mt-1">
-            <button className="btn btn-link btn-sm btn-block text-dark">Cadastrar</button>
+            <button className="btn btn-link btn-sm btn-block text-dark">Criar uma conta</button>
           </div>
         </div>
       </div>

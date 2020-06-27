@@ -1,18 +1,35 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { FiPlusCircle } from "react-icons/fi";
+import { FiPlusCircle, FiList } from "react-icons/fi";
 
 import StockModal from "./StockModal";
 
 import { stockListFullState } from "../store/selectors";
 
-const StocksTable = () => {
-  const stocks = useRecoilValue(stockListFullState);
-
+const EmptyState = () => {
   return (
-    <div className="">
-      <StockModal />
+    <div className="text-center p-5 mt-5">
+      <span className="d-inline-block bg-dark p-3 rounded-circle">
+        <FiList size={32} className="text-light" />
+      </span>
 
+      <div className="font-weight-bold mt-3">Parece que sua planilha está vazia!</div>
+      <div className="">Comece atualizado o seu saldo e depois adicione o seu primeiro ativo.</div>
+      <div className="">Que tal criar uma conta e sincronizar os seus dados?</div>
+
+      <button 
+        className="btn btn-dark px-5 mt-5" 
+        data-toggle="modal"
+        data-target="#stockModal"
+      >Adicionar meu primeiro ativo</button>
+      <button className="btn btn-link btn-sm btn-block text-dark mt-1">Criar uma conta</button>
+  </div>
+  )
+}
+
+const Table = ({ stocks }) => {
+  return (
+    <>
       <div className="card card-body font-weight-bold">
         <div className="row">
           <div className="col-5 border-right text-center">Ativo</div>
@@ -56,6 +73,18 @@ const StocksTable = () => {
           </div>
         </div>
       </div>
+    </>
+  )
+}
+
+const StocksTable = () => {
+  const stocks = useRecoilValue(stockListFullState);
+
+  return (
+    <div className="">
+      {stocks.length ? <Table stocks={stocks} /> : <EmptyState />}
+
+      <StockModal />
     </div>
   );
 };

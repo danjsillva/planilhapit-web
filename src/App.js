@@ -19,7 +19,7 @@ const App = () => {
             <div className="col-12 col-lg-10">
               <StocksTable />
 
-              <StocksChart />
+              {/* <StocksChart /> */}
             </div>
           </div>
         </div>

@@ -50,10 +50,10 @@ const Sidebar = () => {
       <div className="mt-2">
         <div className="row">
           <div className="col-6 col-lg-12">
-            <button className="btn btn-dark btn-block">Entrar</button>
+            <button className="btn btn-dark btn-block disabled">Entrar</button>
           </div>
           <div className="col-6 col-lg-12 mt-1">
-            <button className="btn btn-link btn-sm btn-block text-dark">Criar uma conta</button>
+            <button className="btn btn-link btn-sm btn-block text-dark disabled">Criar uma conta</button>
           </div>
         </div>
       </div>

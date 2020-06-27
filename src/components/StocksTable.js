@@ -22,7 +22,7 @@ const EmptyState = () => {
         data-toggle="modal"
         data-target="#stockModal"
       >Adicionar meu primeiro ativo</button>
-      <button className="btn btn-link btn-sm btn-block text-dark mt-1">Criar uma conta</button>
+      <button className="btn btn-link btn-sm btn-block text-dark mt-1 disabled">Criar uma conta</button>
   </div>
   )
 }

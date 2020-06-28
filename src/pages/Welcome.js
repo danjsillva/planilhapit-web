@@ -32,7 +32,9 @@ const Welcome = () => {
             <DevelopedBy />
           </div>
         </div>
-        <div className="col"></div>
+        <div className="col">
+          
+        </div>
       </div>
     </div>
   );

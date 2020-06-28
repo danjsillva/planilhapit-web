@@ -8,10 +8,6 @@ import {
   FiMinus,
 } from "react-icons/fi";
 
-import StocksCharts from "./StocksCharts";
-
-import StockModal from "./StockModal";
-
 import { stockListFullState } from "../store/selectors";
 
 const EmptyState = () => {
@@ -177,8 +173,6 @@ const Table = ({ stocks }) => {
           </div>
         </div>
       </div>
-
-      <StocksCharts />
     </>
   );
 };
@@ -190,7 +184,7 @@ const StocksTable = () => {
     <>
       {stocks.length ? <Table stocks={stocks} /> : <EmptyState />}
 
-      <StockModal />
+      
     </>
   );
 };

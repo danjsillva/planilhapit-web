@@ -85,7 +85,7 @@ const StockChart = () => {
   const stocks = useRecoilValue(stockListFullState);
 
   return (
-    <div className="card card-body mt-1">
+    stocks.length > 0 && <div className="card card-body mt-1">
       <div className="row">
         <div className="col">
           <div className="btn-group">

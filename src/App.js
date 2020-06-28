@@ -1,10 +1,9 @@
 import React, { Suspense } from "react";
 import { RecoilRoot } from "recoil";
 
+import Router from "./Router"
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import StocksTable from "./components/StocksTable";
-import StocksChart from "./components/StocksChart";
 
 import "./style.css";
 
@@ -20,9 +19,7 @@ const App = () => {
               <Sidebar />
             </div>
             <div className="col-12 col-lg-10">
-              <StocksTable />
-
-              <StocksChart />
+              <Router />
             </div>
           </div>
         </div>

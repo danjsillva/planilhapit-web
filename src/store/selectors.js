@@ -73,10 +73,13 @@ export const stockListFullState = selector({
         (parseInt(stock.grade) / parseFloat(totalGrade)) * 100
       ),
       status:
-        ((parseInt(stock.grade) / parseFloat(totalGrade)) *
-          parseFloat(balance)) /
-          parseFloat(stock.price) >
-        parseInt(Math.floor(stock.volume)),
+        parseInt(
+          Math.floor(
+            ((parseInt(stock.grade) / parseFloat(totalGrade)) *
+              parseFloat(balance)) /
+              parseFloat(stock.price)
+          )
+        ) - parseInt(Math.floor(stock.volume)),
     }));
   },
 });

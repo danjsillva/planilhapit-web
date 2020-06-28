@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const balanceState = atom({ key: "balanceState", default: 200 });
+export const balanceState = atom({ key: "balanceState", default: 0 });
 
 export const stockListState = atom({ key: "stockListState", default: [] });
 

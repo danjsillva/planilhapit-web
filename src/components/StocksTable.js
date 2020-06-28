@@ -1,6 +1,13 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { FiPlusCircle, FiList } from "react-icons/fi";
+import {
+  FiPlusCircle,
+  FiList,
+  FiChevronsDown,
+  FiChevronsUp,
+} from "react-icons/fi";
+
+import StocksCharts from "./StocksCharts";
 
 import StockModal from "./StockModal";
 
@@ -69,6 +76,20 @@ const PositionCell = ({ volume, total, percent }) => {
   );
 };
 
+const ActionCell = ({ status }) => {
+  return status === 0 ? (
+    <FiChevronsDown />
+  ) : status > 0 ? (
+    <>
+      {status} <FiChevronsUp className="text-success" />
+    </>
+  ) : (
+    <>
+      {status} <FiChevronsDown className="text-danger" />
+    </>
+  );
+};
+
 const Table = ({ stocks }) => {
   return (
     <>
@@ -106,7 +127,9 @@ const Table = ({ stocks }) => {
                 percent={stock.idealPercent}
               />
             </div>
-            <div className="col-1">{JSON.stringify(stock.status)}</div>
+            <div className="col-1 text-right">
+              <ActionCell status={stock.status} />
+            </div>
           </div>
           {/* <div className="row py-5">
             <div className="col">
@@ -151,6 +174,8 @@ const Table = ({ stocks }) => {
           </div>
         </div>
       </div>
+
+      <StocksCharts />
     </>
   );
 };

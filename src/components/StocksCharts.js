@@ -63,7 +63,9 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-      >{payload.name}</text>
+      >
+        {payload.name}
+      </text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
@@ -79,13 +81,34 @@ const renderActiveShape = (props) => {
 
 const StockChart = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [chartIndex, setChartIndex] = useState(0);
   const stocks = useRecoilValue(stockListFullState);
 
   return (
     <div className="card card-body mt-1">
       <div className="row">
         <div className="col">
-          <ResponsiveContainer width='100%' height={400}>
+          <div className="btn-group">
+            <button
+              type="button"
+              className="btn btn-dark"
+              onClick={() => setChartIndex(0)}
+            >
+              Posição atual
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline-dark disabled"
+              onClick={() => setChartIndex(1)}
+            >
+              Posição ideal
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <ResponsiveContainer width="100%" height={400}>
             <PieChart>
               <Pie
                 data={stocks}

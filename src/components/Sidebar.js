@@ -1,15 +1,18 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
-import ImportModal from './ImportModal'
+import ImportModal from "./ImportModal";
 
 import { balanceState, stockListState } from "../store/atoms";
-import { stockListTotalState, stockListIdealTotalState } from "../store/selectors";
+import {
+  stockListTotalState,
+  stockListIdealTotalState,
+} from "../store/selectors";
 
 const Sidebar = () => {
   const [balance, setBalance] = useRecoilState(balanceState);
-  const [stocks,] = useRecoilState(stockListState);
+  const [stocks] = useRecoilState(stockListState);
   const stockListTotal = useRecoilValue(stockListTotalState);
   const stockListIdealTotal = useRecoilValue(stockListIdealTotalState);
 
@@ -54,21 +57,37 @@ const Sidebar = () => {
       <div className="mt-3">
         <div className="row">
           <div className="col-6 col-lg-12">
-            <CSVLink data={stocks} separator={";"} className="btn btn-dark btn-block">Exportar CSV</CSVLink>
+            <CSVLink
+              data={stocks}
+              separator={";"}
+              className="btn btn-dark btn-block"
+            >
+              Exportar CSV
+            </CSVLink>
           </div>
           <div className="col-6 col-lg-12 mt-1">
-            <button className="btn btn-dark btn-block" data-toggle="modal" data-target="#importModal">Importar CSV</button>
+            <button
+              className="btn btn-dark btn-block"
+              data-toggle="modal"
+              data-target="#importModal"
+            >
+              Importar CSV
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="mt-5">
+      <hr />
+
+      <div className="mt-">
         <div className="row">
           <div className="col-6 col-lg-12">
             <button className="btn btn-dark btn-block disabled">Entrar</button>
           </div>
           <div className="col-6 col-lg-12 mt-1">
-            <button className="btn btn-link btn-sm btn-block text-dark disabled">Criar uma conta</button>
+            <button className="btn btn-link btn-sm btn-block text-dark disabled">
+              Criar uma conta
+            </button>
           </div>
         </div>
       </div>

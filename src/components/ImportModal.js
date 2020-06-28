@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { parse } from 'papaparse'
+import { parse } from "papaparse";
 
 import { stockListState } from "../store/atoms";
 
 const ImportModal = () => {
-  const [form, setForm] = useState({ symbol: "PETR4", grade: 3, volume: 2 });
-  const [error, setError] = useState();
-  const [stocks, setStocks] = useRecoilState(stockListState);
+  const [error, setError] = useState('');
+  const [, setStocks] = useRecoilState(stockListState);
 
   const handleClickImport = async (event) => {
-    const file = document.getElementById('stockListFile').files[0];
+    try {
+      const file = document.getElementById("stockListFile").files[0];
 
-    parse(file, {
-      header: true,
-      skipEmptyLines: true,
-      complete: function(results) {
-        setStocks(results.data);
-      }
-    })
+      parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: function (results) {
+          setStocks(results.data);
+        },
+      });
+    } catch (error) {
+      console.log(error);
+
+      setError("Erro ao tentar importar lista de ativos!");
+    }
   };
 
   return (
@@ -37,8 +42,15 @@ const ImportModal = () => {
             <div className="row">
               <div className="col-6 offset-3 custom-file">
                 <label htmlFor="">Arquivo</label>
-                <input type="file" accept=".csv" className="form-control custom-file-input" id="stockListFile" />
-                <div className="form-text">Você substituirá os ativos adicionados anteriormente.</div>
+                <input
+                  type="file"
+                  accept=".csv"
+                  className="-control custom-file-input"
+                  id="stockListFile"
+                />
+                <div className="-text">
+                  Você substituirá os ativos adicionados anteriormente.
+                </div>
               </div>
             </div>
 

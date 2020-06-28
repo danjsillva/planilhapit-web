@@ -1,27 +1,33 @@
-import { selector } from "recoil"
+import { selector } from "recoil";
 
-import { balanceState, stockListState } from "../store/atoms"
+import { balanceState, stockListState } from "../store/atoms";
 
 export const stockListTotalState = selector({
-  key: 'stockListTotalState',
+  key: "stockListTotalState",
   get: ({ get }) => {
     const stockList = get(stockListState);
 
-    return stockList.reduce((total, stock) => total + stock.price * stock.volume, 0)
-  }
+    return stockList.reduce(
+      (total, stock) => total + stock.price * stock.volume,
+      0
+    );
+  },
 });
 
 export const stockListIdealTotalState = selector({
-  key: 'stockListIdealTotalState',
+  key: "stockListIdealTotalState",
   get: ({ get }) => {
     const stockList = get(stockListFullState);
 
-    return stockList.reduce((total, stock) => total + stock.price * stock.idealVolume, 0)
-  }
+    return stockList.reduce(
+      (total, stock) => total + stock.price * stock.idealVolume,
+      0
+    );
+  },
 });
 
 export const stockListFullState = selector({
-  key: 'stockListFullState',
+  key: "stockListFullState",
   get: ({ get }) => {
     const stockList = get(stockListState);
     const balance = get(balanceState);
@@ -40,20 +46,36 @@ export const stockListFullState = selector({
       grade: parseInt(stock.grade),
       price: parseFloat(stock.price),
       volume: parseInt(Math.floor(stock.volume)),
-      total: parseFloat(stock.volume * stock.price),
+      total: parseFloat(
+        parseInt(Math.floor(stock.volume)) * parseFloat(stock.price)
+      ),
       percent: parseFloat(
-        ((stock.volume * stock.price) / totalPrice) * 100
+        ((parseInt(Math.floor(stock.volume)) * parseFloat(stock.price)) /
+          parseFloat(totalPrice)) *
+          100
       ),
       idealVolume: parseInt(
-        Math.floor(((stock.grade / totalGrade) * balance) / stock.price)
+        Math.floor(
+          ((parseInt(stock.grade) / parseFloat(totalGrade)) *
+            parseFloat(balance)) /
+            parseFloat(stock.price)
+        )
       ),
       idealTotal: parseFloat(
-        Math.floor(((stock.grade / totalGrade) * balance) / stock.price) *
-          stock.price
+        Math.floor(
+          ((parseInt(stock.grade) / parseFloat(totalGrade)) *
+            parseFloat(balance)) /
+            parseFloat(stock.price)
+        ) * parseFloat(stock.price)
       ),
-      idealPercent: parseFloat((stock.grade / totalGrade) * 100),
+      idealPercent: parseFloat(
+        (parseInt(stock.grade) / parseFloat(totalGrade)) * 100
+      ),
       status:
-        ((stock.grade / totalGrade) * balance) / stock.price > stock.volume,
-    }))
-  }
+        ((parseInt(stock.grade) / parseFloat(totalGrade)) *
+          parseFloat(balance)) /
+          parseFloat(stock.price) >
+        parseInt(Math.floor(stock.volume)),
+    }));
+  },
 });

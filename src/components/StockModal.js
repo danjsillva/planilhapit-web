@@ -5,8 +5,8 @@ import axios from "axios";
 import { stockListState } from "../store/atoms";
 
 const StockModal = () => {
-  const [form, setForm] = useState({ symbol: "PETR4", grade: 3, volume: 2 });
-  const [error, setError] = useState();
+  const [form, setForm] = useState({ symbol: '', grade: 0, volume: 0 });
+  const [error, setError] = useState('');
   const [stocks, setStocks] = useRecoilState(stockListState);
 
   const handleSubmitForm = async (event) => {
@@ -36,11 +36,13 @@ const StockModal = () => {
           name: response[form.symbol].name,
         },
       ]);
-
-      // setForm({ symbol: '', grade: 0, volume: 0 })
     } catch (error) {
       console.log(error);
+
+      setError("Erro ao adicionar ativo!");
     }
+
+    setForm({ symbol: '', grade: 0, volume: 0 });
   };
 
   return (

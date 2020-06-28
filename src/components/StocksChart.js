@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { PieChart, Pie, Sector } from "recharts";
+import { ResponsiveContainer, PieChart, Pie, Sector } from "recharts";
 
 import { stockListFullState } from "../store/selectors";
 
@@ -63,7 +63,7 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-      >{`${payload.name} ${value}`}</text>
+      >{payload.name}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
@@ -85,20 +85,20 @@ const StockChart = () => {
     <div className="card card-body mt-1">
       <div className="row">
         <div className="col">
-          <PieChart width={400} height={400}>
-            <Pie
-              data={stocks}
-              cx={200}
-              cy={200}
-              innerRadius={60}
-              outerRadius={80}
-              fill="#343a40"
-              dataKey="volume"
-              activeIndex={activeIndex}
-              activeShape={renderActiveShape}
-              onMouseEnter={(data, index) => setActiveIndex(index)}
-            />
-          </PieChart>
+          <ResponsiveContainer width='100%' height={400}>
+            <PieChart>
+              <Pie
+                data={stocks}
+                innerRadius={60}
+                outerRadius={80}
+                fill="#343a40"
+                dataKey="percent"
+                activeIndex={activeIndex}
+                activeShape={renderActiveShape}
+                onMouseEnter={(data, index) => setActiveIndex(index)}
+              />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>

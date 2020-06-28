@@ -3,8 +3,9 @@ import { useRecoilValue } from "recoil";
 import {
   FiPlusCircle,
   FiList,
-  FiChevronsDown,
-  FiChevronsUp,
+  FiChevronDown,
+  FiChevronUp,
+  FiMinus,
 } from "react-icons/fi";
 
 import StocksCharts from "./StocksCharts";
@@ -37,9 +38,9 @@ const EmptyState = () => {
       >
         Adicionar meu primeiro ativo
       </button>
-      <button className="btn btn-link btn-sm btn-block text-dark mt-1 disabled">
+      {/* <button className="btn btn-link btn-sm btn-block text-dark mt-1 disabled">
         Criar uma conta
-      </button>
+      </button> */}
     </div>
   );
 };
@@ -78,14 +79,16 @@ const PositionCell = ({ volume, total, percent }) => {
 
 const ActionCell = ({ status }) => {
   return status === 0 ? (
-    <FiChevronsDown />
+    <>
+      {status} <FiMinus className="text-danger" />
+    </>
   ) : status > 0 ? (
     <>
-      {status} <FiChevronsUp className="text-success" />
+      {status} <FiChevronUp className="text-success" />
     </>
   ) : (
     <>
-      {status} <FiChevronsDown className="text-danger" />
+      {status} <FiChevronDown className="text-danger" />
     </>
   );
 };

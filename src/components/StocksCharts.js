@@ -91,14 +91,14 @@ const StockChart = () => {
           <div className="btn-group">
             <button
               type="button"
-              className="btn btn-dark"
+              className="btn btn-dark px-5"
               onClick={() => setChartIndex(0)}
             >
               Posição atual
             </button>
             <button
               type="button"
-              className="btn btn-outline-dark disabled"
+              className="btn btn-outline-dark px-5 disabled"
               onClick={() => setChartIndex(1)}
             >
               Posição ideal

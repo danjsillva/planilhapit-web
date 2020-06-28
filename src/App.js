@@ -2,8 +2,9 @@ import React, { Suspense } from "react";
 import { RecoilRoot } from "recoil";
 
 import Router from "./Router"
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+// import Footer from "./components/Footer";
 
 import "./style.css";
 
@@ -11,7 +12,7 @@ const App = () => {
   return (
     <RecoilRoot>
       <Suspense fallback={"Loading"}>
-        <Header />
+        {/* <Header /> */}
 
         <div className="container">
           <div className="row mt-5">
@@ -23,6 +24,8 @@ const App = () => {
             </div>
           </div>
         </div>
+
+        {/* <Footer /> */}
       </Suspense>
     </RecoilRoot>
   );

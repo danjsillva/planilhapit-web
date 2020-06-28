@@ -1,6 +1,7 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { CSVLink } from "react-csv";
+import { FiHeart } from "react-icons/fi";
 
 import ImportModal from "./ImportModal";
 
@@ -77,7 +78,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <hr />
+      {/* <hr />
 
       <div className="mt-">
         <div className="row">
@@ -90,6 +91,20 @@ const Sidebar = () => {
             </button>
           </div>
         </div>
+      </div> */}
+
+      <div className="mt-5">
+        <small className="text-muted">
+          Developed with <FiHeart /> by{" "}
+          <a
+            href="https://www.instagram.com/danjsillva/"
+            target="blank"
+            className="text-dark"
+            style={{ textDecoration: "none" }}
+          >
+            Daniel Silva
+          </a>
+        </small>
       </div>
 
       <ImportModal />

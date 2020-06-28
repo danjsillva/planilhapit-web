@@ -45,7 +45,7 @@ const StockCell = ({ symbol, name, grade, price }) => {
   return (
     <div className="row">
       <div className="col-4" title={name}>
-        {symbol}
+        <b>{symbol}</b>
       </div>
       <div className="col-2 text-right" title="Nota">
         {grade}
@@ -64,7 +64,7 @@ const PositionCell = ({ volume, total, percent }) => {
         {volume}
       </div>
       <div className="col-6 text-right" title="Total">
-        R$ {total.toFixed(2)}
+        <b>R$ {total.toFixed(2)}</b>
       </div>
       <div className="col-3 text-right border-right" title="Percentual">
         {percent.toFixed(1)}%
@@ -180,13 +180,7 @@ const Table = ({ stocks }) => {
 const StocksTable = () => {
   const stocks = useRecoilValue(stockListFullState);
 
-  return (
-    <>
-      {stocks.length ? <Table stocks={stocks} /> : <EmptyState />}
-
-      
-    </>
-  );
+  return <>{stocks.length ? <Table stocks={stocks} /> : <EmptyState />}</>;
 };
 
 export default StocksTable;

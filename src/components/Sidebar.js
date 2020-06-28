@@ -58,6 +58,7 @@ const Sidebar = () => {
         <div className="row">
           <div className="col-6 col-lg-12">
             <CSVLink
+              filename="planilhapit-stocks.csv"
               data={stocks}
               separator={";"}
               className="btn btn-dark btn-block"

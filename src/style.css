@@ -4,12 +4,20 @@ html {
 }
 
 body {
-  background-color: #fafafa;
+  background-color: #f0f0f0;
 }
 
 * {
   outline: none;
   box-shadow:none !important;
+}
+
+label {
+  font-weight: bold;
+}
+
+.card {
+  border: none;
 }
 
 .pointer {

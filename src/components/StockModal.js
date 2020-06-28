@@ -5,18 +5,17 @@ import axios from "axios";
 import { stockListState } from "../store/atoms";
 
 const StockModal = () => {
-  const [form, setForm] = useState({ symbol: '', grade: 0, volume: 0 });
-  const [error, setError] = useState('');
+  const [form, setForm] = useState({
+    symbol: "",
+    name: "",
+    price: 0,
+    grade: 0,
+    volume: 0,
+  });
+  const [error, setError] = useState("");
   const [stocks, setStocks] = useRecoilState(stockListState);
 
-  const handleSubmitForm = async (event) => {
-    event.preventDefault();
-
-    if (stocks.some((stock) => stock.symbol === form.symbol)) {
-      setError("Este ativo já foi adicionado!");
-      return;
-    }
-
+  const handleBlurSymbol = async (event) => {
     try {
       const response = (
         await axios.get(
@@ -28,21 +27,29 @@ const StockModal = () => {
         return;
       }
 
-      setStocks([
-        ...stocks,
-        {
-          ...form,
-          price: response[form.symbol].price,
-          name: response[form.symbol].name,
-        },
-      ]);
+      setForm({
+        ...form,
+        name: response[form.symbol].name,
+        price: response[form.symbol].price,
+      });
     } catch (error) {
       console.log(error);
+    }
+  };
 
-      setError("Erro ao adicionar ativo!");
+  const handleSubmitForm = async (event) => {
+    event.preventDefault();
+
+    setError("");
+
+    if (stocks.some((stock) => stock.symbol === form.symbol)) {
+      setError("Este ativo já foi adicionado!");
+      return;
     }
 
-    setForm({ symbol: '', grade: 0, volume: 0 });
+    setStocks([...stocks, form]);
+
+    setForm({ symbol: "", name: "", price: 0, grade: 0, volume: 0 });
   };
 
   return (
@@ -67,9 +74,38 @@ const StockModal = () => {
                     onChange={(e) =>
                       setForm({ ...form, symbol: e.target.value.toUpperCase() })
                     }
+                    onBlur={handleBlurSymbol}
                     className="form-control"
                   />
                   <div className="form-text">Código do ativo. Ex.: PETR4.</div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-6 offset-3 mt-3">
+                  <label htmlFor="">Nome</label>
+                  <input
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="form-control"
+                  />
+                  <div className="form-text">
+                    Nome da companhia. Ex.: Petróleo Brasileiro S.A. -
+                    Petrobras.
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-6 offset-3 mt-3">
+                  <label htmlFor="">Preço</label>
+                  <input
+                    type="number"
+                    value={form.price}
+                    onChange={(e) =>
+                      setForm({ ...form, price: e.target.value })
+                    }
+                    className="form-control"
+                  />
+                  <div className="form-text">Preço atual do ativo.</div>
                 </div>
               </div>
               <div className="row">

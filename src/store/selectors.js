@@ -32,11 +32,12 @@ export const stockListFullState = selector({
     const stockList = get(stockListState);
     const balance = get(balanceState);
     const totalPrice = stockList.reduce(
-      (total, stock) => total + stock.volume * stock.price,
+      (total, stock) =>
+        total + parseInt(Math.floor(stock.volume)) * parseFloat(stock.price),
       0
     );
     const totalGrade = stockList.reduce(
-      (total, stock) => total + stock.grade,
+      (total, stock) => total + parseInt(stock.grade),
       0
     );
 

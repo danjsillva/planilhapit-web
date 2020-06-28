@@ -5,7 +5,7 @@ import { parse } from "papaparse";
 import { stockListState } from "../store/atoms";
 
 const ImportModal = () => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [, setStocks] = useRecoilState(stockListState);
 
   const handleClickImport = async (event) => {
@@ -45,7 +45,7 @@ const ImportModal = () => {
                 <input
                   type="file"
                   accept=".csv"
-                  className="-control custom-file-input"
+                  className="form-control custom-file-input"
                   id="stockListFile"
                 />
                 <div className="-text">

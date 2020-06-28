@@ -1,9 +1,8 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { CSVLink } from "react-csv";
-import { FiHeart } from "react-icons/fi";
 
-import ImportModal from "./ImportModal";
+import DevelopedBy from "./DevelopedBy";
 
 import { balanceState, stockListState } from "../store/atoms";
 import {
@@ -94,20 +93,8 @@ const Sidebar = () => {
       </div> */}
 
       <div className="mt-5">
-        <small className="text-muted">
-          Developed with <FiHeart /> by{" "}
-          <a
-            href="https://www.instagram.com/danjsillva/"
-            target="blank"
-            className="text-dark"
-            style={{ textDecoration: "none" }}
-          >
-            Daniel Silva
-          </a>
-        </small>
+        <DevelopedBy />
       </div>
-
-      <ImportModal />
     </div>
   );
 };

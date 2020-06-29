@@ -92,12 +92,66 @@ const ActionCell = ({ status }) => {
 const Table = ({ stocks }) => {
   return (
     <>
-      <div className="card card-body font-weight-bold">
+      <div className="card card-body">
         <div className="row">
-          <div className="col-3 text-center border-right">Ativo</div>
-          <div className="col-4 text-center border-right">Posição Atual</div>
-          <div className="col-4 text-center border-right">Posição Ideal</div>
-          <div className="col-1 text-center">Ação</div>
+          <div className="col-3 border-right">
+            <div className="row text-center font-weight-bold">
+              <div className="col">Ativo</div>
+            </div>
+            <div className="row form-text">
+              <div className="col-3">
+                <small>Código</small>
+              </div>
+              <div className="col-3 text-right">
+                <small>Nota</small>
+              </div>
+              <div className="col-6 text-right">
+                <small>Preço</small>
+              </div>
+            </div>
+          </div>
+          <div className="col-4 border-right">
+            <div className="row text-center font-weight-bold">
+              <div className="col">Posição Atual</div>
+            </div>
+            <div className="row form-text">
+              <div className="col-3 text-right">
+                <small>Quantidade</small>
+              </div>
+              <div className="col-6 text-right">
+                <small>Total</small>
+              </div>
+              <div className="col-3 text-right">
+                <small>Percentual</small>
+              </div>
+            </div>
+          </div>
+          <div className="col-4 border-right">
+            <div className="row text-center font-weight-bold">
+              <div className="col">Posição Ideal</div>
+            </div>
+            <div className="row form-text">
+              <div className="col-3 text-right">
+                <small>Quantidade</small>
+              </div>
+              <div className="col-6 text-right">
+                <small>Total</small>
+              </div>
+              <div className="col-3 text-right">
+                <small>Percentual</small>
+              </div>
+            </div>
+          </div>
+          <div className="col-1">
+            <div className="row text-center font-weight-bold">
+              <div className="col">Ação</div>
+            </div>
+            <div className="row form-text">
+              <div className="col text-right">
+                <small>Quantidade</small>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

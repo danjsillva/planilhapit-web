@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 import DevelopedBy from "../components/DevelopedBy";
 
+import ImageScreen1 from "../assets/screen-1.png";
+// import ImageScreen2 from "../assets/screen-2.png";
+
 const Welcome = () => {
   return (
     <div
@@ -10,7 +13,7 @@ const Welcome = () => {
       style={{ height: "100vh" }}
     >
       <div className="row">
-        <div className="col-4">
+        <div className="col-4 pt-5">
           <h1>
             Bem vindo à <b>Planilha Pit</b>!
           </h1>
@@ -33,7 +36,7 @@ const Welcome = () => {
           </div>
         </div>
         <div className="col">
-          
+          <img src={ImageScreen1} alt="welcome" width="100%" />
         </div>
       </div>
     </div>

@@ -20,6 +20,12 @@ label {
   border: none;
 }
 
+.toast-container {
+  min-height: 2.5rem;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1rem;
+}
+
 .pointer {
   cursor: pointer;
 }

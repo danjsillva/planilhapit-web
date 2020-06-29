@@ -1,5 +1,7 @@
 import React, { Suspense } from "react";
 import { RecoilRoot } from "recoil";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Router from "./Router";
 
@@ -11,6 +13,13 @@ const App = () => {
       <Suspense fallback={"Loading"}>
         <Router />
       </Suspense>
+
+      <ToastContainer
+        position="bottom-left"
+        closeButton={false}
+        hideProgressBar={true}
+        toastClassName="toast-container"
+      />
     </RecoilRoot>
   );
 };

@@ -15,7 +15,7 @@ const App = () => {
       </Suspense>
 
       <ToastContainer
-        position="bottom-left"
+        position="top-center"
         closeButton={false}
         hideProgressBar={true}
         toastClassName="toast-container"

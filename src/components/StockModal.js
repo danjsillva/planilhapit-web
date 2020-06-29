@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 import { stockListState } from "../store/atoms";
@@ -12,7 +13,6 @@ const StockModal = () => {
     grade: 0,
     volume: 0,
   });
-  const [error, setError] = useState("");
   const [stocks, setStocks] = useRecoilState(stockListState);
 
   const handleBlurSymbol = async (event) => {
@@ -40,14 +40,13 @@ const StockModal = () => {
   const handleSubmitForm = async (event) => {
     event.preventDefault();
 
-    setError("");
-
     if (stocks.some((stock) => stock.symbol === form.symbol)) {
-      setError("Este ativo já foi adicionado!");
+      toast.error("Este ativo já foi adicionado!");
       return;
     }
 
     setStocks([...stocks, form]);
+    toast.success(`O ativo ${form.symbol} foi adicionado!`);
 
     setForm({ symbol: "", name: "", price: 0, grade: 0, volume: 0 });
   };
@@ -139,12 +138,6 @@ const StockModal = () => {
                 </div>
               </div>
             </form>
-
-            <div className="row">
-              <div className="col-6 offset-3 text-danger mt-3">
-                {error && <span>{error}</span>}
-              </div>
-            </div>
           </div>
 
           <div className="modal-footer">

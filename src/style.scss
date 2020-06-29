@@ -9,7 +9,7 @@ body {
 
 * {
   outline: none;
-  box-shadow:none !important;
+  box-shadow: none !important;
 }
 
 label {
@@ -20,10 +20,28 @@ label {
   border: none;
 }
 
+.modal-dialog {
+  margin-top: 100px;
+}
+
 .toast-container {
+  font-family: "Exo 2", sans-serif;
+  color: white;
   min-height: 2.5rem;
   border-radius: 0.25rem;
   padding: 0.75rem 1rem;
+}
+
+.Toastify__toast--default {
+  background-color: #343a40;
+}
+
+.Toastify__toast--success {
+  background-color: #28a745;
+}
+
+.Toastify__toast--error {
+  background-color: #dc3545;
 }
 
 .pointer {

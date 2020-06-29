@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRecoilState } from "recoil";
 import { parse } from "papaparse";
+import { toast } from "react-toastify";
 
 import { stockListState } from "../store/atoms";
 
 const ImportModal = () => {
-  const [error, setError] = useState("");
   const [, setStocks] = useRecoilState(stockListState);
 
   const handleClickImport = async (event) => {
@@ -17,12 +17,14 @@ const ImportModal = () => {
         skipEmptyLines: true,
         complete: function (results) {
           setStocks(results.data);
+
+          toast.success("A lista de ativos foi importada!");
         },
       });
     } catch (error) {
       console.log(error);
 
-      setError("Erro ao tentar importar lista de ativos!");
+      toast.error("Erro ao tentar importar lista de ativos!");
     }
   };
 
@@ -51,12 +53,6 @@ const ImportModal = () => {
                 <div className="-text">
                   Você substituirá os ativos adicionados anteriormente.
                 </div>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-6 offset-3 text-danger mt-3">
-                {error && <span>{error}</span>}
               </div>
             </div>
           </div>

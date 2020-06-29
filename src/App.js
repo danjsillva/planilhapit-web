@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Router from "./Router";
 
-import "./style.css";
+import "./style.scss";
 
 const App = () => {
   return (

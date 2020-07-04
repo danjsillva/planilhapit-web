@@ -4,7 +4,6 @@ import Sidebar from "../components/Sidebar";
 import StocksTable from "../components/StocksTable";
 import StocksCharts from "../components/StocksCharts";
 import StockModal from "../components/StockModal";
-import ImportModal from "../components/ImportModal";
 
 const Stocks = () => {
   return (
@@ -19,7 +18,6 @@ const Stocks = () => {
           <StocksCharts />
 
           <StockModal />
-          <ImportModal />
         </div>
       </div>
     </div>

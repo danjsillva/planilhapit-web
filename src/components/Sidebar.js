@@ -1,7 +1,9 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import NumberFormat from "react-number-format";
+import { toast } from "react-toastify";
 import { CSVLink } from "react-csv";
+import { parse } from "papaparse";
 
 import DevelopedBy from "./DevelopedBy";
 
@@ -13,9 +15,41 @@ import {
 
 const Sidebar = () => {
   const [balance, setBalance] = useRecoilState(balanceState);
-  const [stocks] = useRecoilState(stockListState);
+  const [stocks, setStocks] = useRecoilState(stockListState);
   const stockListTotal = useRecoilValue(stockListTotalState);
   const stockListIdealTotal = useRecoilValue(stockListIdealTotalState);
+
+  const handleClickExport = async (event) => {
+    try {
+      toast.success("A lista de ativos foi exportada!");
+    } catch (error) {
+      console.log(error);
+
+      toast.error("Erro ao tentar exportar lista de ativos!");
+    }
+  };
+
+  const handleClickImport = async (event) => {
+    try {
+      const file = event.target.files[0];
+
+      parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: function (results) {
+          setStocks(results.data);
+
+          toast.success("A lista de ativos foi importada!");
+        },
+      });
+    } catch (error) {
+      console.log(error);
+
+      toast.error("Erro ao tentar importar lista de ativos!");
+    }
+
+    event.target.value = null;
+  };
 
   return (
     <div className="">
@@ -32,7 +66,7 @@ const Sidebar = () => {
               decimalScale={2}
               fixedDecimalScale={true}
               allowLeadingZeros={false}
-              onValueChange={values => setBalance(values.floatValue)}
+              onValueChange={(values) => setBalance(values.floatValue)}
               className="form-control"
               autoFocus
             />
@@ -84,6 +118,7 @@ const Sidebar = () => {
               data={stocks}
               separator={";"}
               className="btn btn-dark btn-block"
+              onClick={handleClickExport}
             >
               Exportar CSV
             </CSVLink>
@@ -91,11 +126,17 @@ const Sidebar = () => {
           <div className="col-6 col-lg-12 mt-1">
             <button
               className="btn btn-dark btn-block"
-              data-toggle="modal"
-              data-target="#importModal"
+              onClick={() => document.getElementById("stockListFile").click()}
             >
               Importar CSV
             </button>
+            <input
+              id="stockListFile"
+              type="file"
+              accept=".csv"
+              className="form-control-file"
+              onChange={handleClickImport}
+            />
           </div>
         </div>
       </div>

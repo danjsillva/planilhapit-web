@@ -72,7 +72,7 @@ export const stockListFullState = selector({
       idealPercent: parseFloat(
         (parseInt(stock.grade) / parseFloat(totalGrade)) * 100
       ),
-      status:
+      differenceVolume:
         parseInt(
           Math.floor(
             ((parseInt(stock.grade) / parseFloat(totalGrade)) *
@@ -80,6 +80,17 @@ export const stockListFullState = selector({
               parseFloat(stock.price)
           )
         ) - parseInt(Math.floor(stock.volume)),
+      differenceTotal: parseInt(
+        Math.floor(
+          ((parseInt(stock.grade) / parseFloat(totalGrade)) *
+            parseFloat(balance)) /
+            parseFloat(stock.price)
+        ) *
+          parseFloat(stock.price) -
+          parseFloat(
+            parseInt(Math.floor(stock.volume)) * parseFloat(stock.price)
+          )
+      ),
     }));
   },
 });

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
+import NumberFormat from "react-number-format";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -96,11 +97,17 @@ const StockModal = () => {
               <div className="row">
                 <div className="col-6 offset-3 mt-3">
                   <label htmlFor="">Preço</label>
-                  <input
-                    type="number"
+                  <NumberFormat
+                    defaultValue={0}
                     value={form.price}
-                    onChange={(e) =>
-                      setForm({ ...form, price: e.target.value })
+                    prefix="R$ "
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    decimalScale={2}
+                    fixedDecimalScale={true}
+                    allowLeadingZeros={false}
+                    onValueChange={(values) =>
+                      setForm({ ...form, price: values.floatValue })
                     }
                     className="form-control"
                   />

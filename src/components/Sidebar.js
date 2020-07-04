@@ -1,5 +1,6 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import NumberFormat from "react-number-format";
 import { CSVLink } from "react-csv";
 
 import DevelopedBy from "./DevelopedBy";
@@ -22,9 +23,16 @@ const Sidebar = () => {
         <div className="row">
           <div className="col-6 col-lg-12">
             <label htmlFor="">Saldo</label>
-            <input
+            <NumberFormat
+              defaultValue={0}
               value={balance}
-              onChange={(e) => setBalance(e.target.value)}
+              prefix="R$ "
+              thousandSeparator="."
+              decimalSeparator=","
+              decimalScale={2}
+              fixedDecimalScale={true}
+              allowLeadingZeros={false}
+              onValueChange={values => setBalance(values.floatValue)}
               className="form-control"
               autoFocus
             />
@@ -37,16 +45,30 @@ const Sidebar = () => {
         <div className="row">
           <div className="col-6 col-lg-12">
             <label htmlFor="">Total atual</label>
-            <input
-              value={stockListTotal.toFixed(2)}
+            <NumberFormat
+              defaultValue={0}
+              value={stockListTotal}
+              prefix="R$ "
+              thousandSeparator="."
+              decimalSeparator=","
+              decimalScale={2}
+              fixedDecimalScale={true}
+              allowLeadingZeros={false}
               className="form-control"
               readOnly
             />
           </div>
           <div className="col-6 col-lg-12 mt-3">
             <label htmlFor="">Total ideal</label>
-            <input
-              value={stockListIdealTotal.toFixed(2)}
+            <NumberFormat
+              defaultValue={0}
+              value={stockListIdealTotal}
+              prefix="R$ "
+              thousandSeparator="."
+              decimalSeparator=","
+              decimalScale={2}
+              fixedDecimalScale={true}
+              allowLeadingZeros={false}
               className="form-control"
               readOnly
             />

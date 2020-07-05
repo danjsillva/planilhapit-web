@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 import classNames from "classnames";
 
 import Sidebar from "../components/Sidebar";
+import EmptyState from "../components/EmptyState";
 import StocksTable from "../components/StocksTable";
 import StocksCharts from "../components/StocksCharts";
 import StockModal from "../components/StockModal";
 
+import { stockListState } from "../store/atoms";
+
 const Stocks = () => {
   const [tabIndex, setTabIndex] = useState(0);
+  const [stocks] = useRecoilState(stockListState);
 
   return (
     <div className="container">
@@ -56,9 +61,15 @@ const Stocks = () => {
             </div>
           </div>
 
-          {tabIndex === 0 && <StocksTable />}
-
-          {tabIndex === 1 && <StocksCharts />}
+          {stocks.length ? (
+            tabIndex === 0 ? (
+              <StocksTable />
+            ) : (
+              <StocksCharts />
+            )
+          ) : (
+            <EmptyState />
+          )}
 
           <StockModal />
         </div>

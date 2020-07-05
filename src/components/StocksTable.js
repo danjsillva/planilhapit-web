@@ -58,7 +58,7 @@ const StocksTable = () => {
     <>
       {stocksFull.length ? (
         <>
-          <div className="card card-body">
+          <div className="card card-body mt-3">
             <div className="row align-items-end font-weight-bold">
               <div className="col-3">Ativo</div>
               <div className="col-1 text-right">Nota</div>
@@ -167,15 +167,16 @@ const StocksTable = () => {
             </div>
           ))}
 
-          <div
-            className="card card-body pointer mt-1"
-            data-toggle="modal"
-            data-target="#stockModal"
-          >
-            <div className="row">
-              <div className="col text-center">
-                <FiPlusCircle />
-              </div>
+          <div className="d-flex justify-content-between align-items-center mt-3 mb-5">
+            <div className="text-muted">Você tem {stocksFull.length} ativos na sua carteira</div>
+            <div className="">
+              <button
+                className="btn btn-dark px-5"
+                data-toggle="modal"
+                data-target="#stockModal"
+              >
+                Adicionar ativo
+              </button>
             </div>
           </div>
         </>

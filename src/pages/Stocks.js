@@ -29,7 +29,7 @@ const Stocks = () => {
                 ])}
                 onClick={() => setTabIndex(0)}
               >
-                Tabela
+                Planilha
               </button>
               <button
                 type="button"

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import DevelopedBy from "../components/DevelopedBy";
 
@@ -7,6 +8,14 @@ import ImageScreen1 from "../assets/screen-1.png";
 // import ImageScreen2 from "../assets/screen-2.png";
 
 const Welcome = () => {
+  const handleClickGoToSheet = async (event) => {
+    const response = (
+      await axios.post(
+        "https://blxskdikk0.execute-api.sa-east-1.amazonaws.com/dev/log"
+      )
+    ).data;
+  };
+
   return (
     <div
       className="container d-flex align-items-center"
@@ -26,7 +35,11 @@ const Welcome = () => {
           </p>
 
           <div className="">
-            <Link to="/stocks" className="btn btn-dark px-5">
+            <Link
+              to="/stocks"
+              className="btn btn-dark px-5"
+              onClick={handleClickGoToSheet}
+            >
               Ir para a planilha
             </Link>
           </div>
